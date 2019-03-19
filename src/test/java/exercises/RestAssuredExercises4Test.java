@@ -2,14 +2,10 @@ package exercises;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import java.util.concurrent.TimeUnit;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.lessThan;
 
 public class RestAssuredExercises4Test {
 

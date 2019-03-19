@@ -1,23 +1,22 @@
 package exercises;
 
-import com.tngtech.java.junit.dataprovider.DataProvider;
-import com.tngtech.java.junit.dataprovider.DataProviderRunner;
-import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import dataentities.Address;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.http.*;
-import io.restassured.specification.*;
-import org.junit.*;
-import org.junit.runner.RunWith;
+import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.requestSpecification;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.lessThan;
 
-@RunWith(DataProviderRunner.class)
 public class RestAssuredExamples {
 
     private static String myAuthenticationToken;
@@ -109,8 +108,7 @@ public class RestAssuredExamples {
             body("MRData.DriverTable.Drivers.permanentNumber[0]", equalTo("33"));
     }
 
-    @Test
-    @UseDataProvider("driverData")
+    @Test(dataProvider="driverData")
     public void checkPermanentNumberForDriver(String driverName, String permanentNumber) {
 
         given().

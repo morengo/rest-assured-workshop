@@ -1,0 +1,188 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "MRData"
+  ],
+  "properties": {
+    "MRData": {
+      "$id": "#/properties/MRData",
+      "type": "object",
+      "title": "The Mrdata Schema",
+      "required": [
+        "series",
+        "limit",
+        "offset",
+        "total",
+        "CircuitTable"
+      ],
+      "properties": {
+        "series": {
+          "$id": "#/properties/MRData/properties/series",
+          "type": "string",
+          "title": "The Series Schema",
+          "default": "",
+          "examples": [
+            "f1"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "limit": {
+          "$id": "#/properties/MRData/properties/limit",
+          "type": "string",
+          "title": "The Limit Schema",
+          "default": "",
+          "examples": [
+            "30"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "offset": {
+          "$id": "#/properties/MRData/properties/offset",
+          "type": "string",
+          "title": "The Offset Schema",
+          "default": "",
+          "examples": [
+            "0"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "total": {
+          "$id": "#/properties/MRData/properties/total",
+          "type": "string",
+          "title": "The Total Schema",
+          "default": "",
+          "examples": [
+            "1"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "CircuitTable": {
+          "$id": "#/properties/MRData/properties/CircuitTable",
+          "type": "object",
+          "title": "The CircuitTable Schema",
+          "required": [
+            "season",
+            "round",
+            "Circuits"
+          ],
+          "properties": {
+            "season": {
+              "$id": "#/properties/MRData/properties/CircuitTable/properties/season",
+              "type": "string",
+              "title": "The Season Schema",
+              "default": "",
+              "examples": [
+                "2014"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "round": {
+              "$id": "#/properties/MRData/properties/CircuitTable/properties/round",
+              "type": "string",
+              "title": "The Round Schema",
+              "default": "",
+              "examples": [
+                "1"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "Circuits": {
+              "$id": "#/properties/MRData/properties/CircuitTable/properties/Circuits",
+              "type": "array",
+              "title": "The Circuits Schema",
+              "items": {
+                "$id": "#/properties/MRData/properties/CircuitTable/properties/Circuits/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "required": [
+                  "circuitId",
+                  "circuitName",
+                  "Location"
+                ],
+                "properties": {
+                  "circuitId": {
+                    "$id": "#/properties/MRData/properties/CircuitTable/properties/Circuits/items/properties/circuitId",
+                    "type": "string",
+                    "title": "The Circuitid Schema",
+                    "default": "",
+                    "examples": [
+                      "albert_park"
+                    ],
+                    "pattern": "^(.*)$"
+                  },
+                  "circuitName": {
+                    "$id": "#/properties/MRData/properties/CircuitTable/properties/Circuits/items/properties/circuitName",
+                    "type": "string",
+                    "title": "The Circuitname Schema",
+                    "default": "",
+                    "examples": [
+                      "Albert Park Grand Prix Circuit"
+                    ],
+                    "pattern": "^(.*)$"
+                  },
+                  "Location": {
+                    "$id": "#/properties/MRData/properties/CircuitTable/properties/Circuits/items/properties/Location",
+                    "type": "object",
+                    "title": "The Location Schema",
+                    "required": [
+                      "lat",
+                      "long",
+                      "locality",
+                      "country"
+                    ],
+                    "properties": {
+                      "lat": {
+                        "$id": "#/properties/MRData/properties/CircuitTable/properties/Circuits/items/properties/Location/properties/lat",
+                        "type": "string",
+                        "title": "The Lat Schema",
+                        "default": "",
+                        "examples": [
+                          "-37.8497"
+                        ],
+                        "pattern": "^(.*)$"
+                      },
+                      "long": {
+                        "$id": "#/properties/MRData/properties/CircuitTable/properties/Circuits/items/properties/Location/properties/long",
+                        "type": "string",
+                        "title": "The Long Schema",
+                        "default": "",
+                        "examples": [
+                          "144.968"
+                        ],
+                        "pattern": "^(.*)$"
+                      },
+                      "locality": {
+                        "$id": "#/properties/MRData/properties/CircuitTable/properties/Circuits/items/properties/Location/properties/locality",
+                        "type": "string",
+                        "title": "The Locality Schema",
+                        "default": "",
+                        "examples": [
+                          "Melbourne"
+                        ],
+                        "pattern": "^(.*)$"
+                      },
+                      "country": {
+                        "$id": "#/properties/MRData/properties/CircuitTable/properties/Circuits/items/properties/Location/properties/country",
+                        "type": "string",
+                        "title": "The Country Schema",
+                        "default": "",
+                        "examples": [
+                          "Australia"
+                        ],
+                        "pattern": "^(.*)$"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
