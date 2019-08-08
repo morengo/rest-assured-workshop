@@ -1,4 +1,4 @@
-package dataentities;
+package entities;
 
 public class Car {
 
