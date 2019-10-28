@@ -1,19 +1,21 @@
 package exercises;
 
-import io.restassured.http.ContentType;
-import org.hamcrest.Matchers;
-import org.testng.annotations.Test;
-
-import java.net.HttpURLConnection;
-
 import static io.restassured.RestAssured.given;
 import static io.restassured.matcher.RestAssuredMatchers.matchesXsdInClasspath;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.not;
+
+import io.restassured.http.ContentType;
+import java.net.HttpURLConnection;
+import org.hamcrest.Matchers;
+import org.testng.annotations.Test;
 
 public class SampleTestCase extends BaseTestCase {
-
 
     @Test
     public void someTest(){
@@ -44,7 +46,7 @@ public class SampleTestCase extends BaseTestCase {
                 .then()
                 .body(matchesXsdInClasspath("xml-schema/cars-xsd.xml"));
     }
-
+/* Work only for local_env*/
     @Test
     public void getOauth2TokenTest(){
 
@@ -60,5 +62,15 @@ public class SampleTestCase extends BaseTestCase {
                 .extract().path("access_token");
 
         assertThat(accessToken, equalTo("access_granted"));
+    }
+
+    @Test
+    public void testGetCircuitsWithKeywords(){
+        circuitInformation.getCircuits().then().statusCode(HttpURLConnection.HTTP_OK);
+    }
+
+    @Test
+    public void testGetDriversWithKeywords(){
+        driverInformation.getDrivers().then().statusCode(HttpURLConnection.HTTP_OK);
     }
 }

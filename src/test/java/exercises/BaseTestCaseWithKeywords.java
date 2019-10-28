@@ -3,8 +3,7 @@ package exercises;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static io.restassured.config.EncoderConfig.encoderConfig;
 
-import Formula1RacingKeywords.CircuitInformation;
-import Formula1RacingKeywords.DriverInformation;
+import Formula1RacingKeywords.KeywordManager;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -17,18 +16,22 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import properties.PropertiesController;
 
-public class BaseTestCase {
+public class BaseTestCaseWithKeywords {
 
     private static final String BASE_URI = PropertiesController.getProperty("workshop.base.url");
     private static final String BASE_PATH = PropertiesController.getProperty("workshop.base.path");
     private WireMockServer wireMockServer;
-    final CircuitInformation circuitInformation = CircuitInformation.getInstance();
-    final DriverInformation driverInformation = DriverInformation.getInstance();
+    KeywordManager keywordManager;
+
+    BaseTestCaseWithKeywords() {
+        keywordManager = KeywordManager.getInstance();
+    }
 
     @BeforeSuite
     public void before() {
         RestAssuredConfig config = RestAssured.config()
-                .encoderConfig(encoderConfig().appendDefaultContentCharsetToContentTypeIfUndefined(false).defaultContentCharset("UTF-8"));
+                .encoderConfig(encoderConfig().appendDefaultContentCharsetToContentTypeIfUndefined(false)
+                        .defaultContentCharset("UTF-8"));
 
         RestAssured.requestSpecification = new RequestSpecBuilder()
                 .setConfig(config)

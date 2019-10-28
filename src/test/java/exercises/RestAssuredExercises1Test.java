@@ -1,26 +1,40 @@
 package exercises;
 
+import com.github.tomakehurst.wiremock.WireMockServer;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
+import java.net.HttpURLConnection;
+import org.apache.http.HttpResponse;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static io.restassured.RestAssured.given;
 
 public class RestAssuredExercises1Test {
 
 	private static RequestSpecification requestSpec;
+	private WireMockServer wireMockServer;
 	
 	@BeforeClass
-	public static void createRequestSpecification() {
+	public void createRequestSpecification() {
 		
 		requestSpec = new RequestSpecBuilder().
 			setBaseUri("http://localhost").
-			setPort(9876).
+			setPort(8089).
 			setBasePath("/api/f1").
 			build();
+
+		wireMockServer = new WireMockServer(options().port(8089));
+		wireMockServer.start();
 	}
-	
+
+	@AfterClass
+	public void tearDown(){
+		wireMockServer.stop();
+	}
+
 	/*******************************************************
 	 * Send a GET request to /2016/drivers.json
 	 * and check that the response has HTTP status code 200

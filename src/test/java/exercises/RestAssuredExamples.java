@@ -1,27 +1,25 @@
 package exercises;
 
-import dataentities.Address;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.lessThan;
+
+import entities.Address;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import java.util.concurrent.TimeUnit;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.lessThan;
-
 public class RestAssuredExamples {
 
     private static String myAuthenticationToken;
 
-    /*
     @BeforeClass
     public static void retrieveToken() {
 
@@ -37,7 +35,6 @@ public class RestAssuredExamples {
                 extract().
                 path("");
     }
-    */
 
     @Test
     public void usePreviouslyStoredAuthToken() {
@@ -210,7 +207,6 @@ public class RestAssuredExamples {
     public void serializeAddressToJson() {
 
         Address myAddress = new Address("My street", 1, 1234, "Amsterdam");
-
         given().
             body(myAddress).
         when().
@@ -224,7 +220,6 @@ public class RestAssuredExamples {
     public void deserializeJsonToAddress() {
 
         Address myAddress =
-
             given().
             when().
                 get("http://localhost:9876/address").

@@ -63,5 +63,11 @@
             <artifactId>json-schema-core</artifactId>
             <version>1.2.5</version>
         </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>3.3.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>

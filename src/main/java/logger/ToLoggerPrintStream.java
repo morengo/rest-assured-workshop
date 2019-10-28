@@ -1,4 +1,4 @@
-package exercises;
+package logger;
 
 import org.slf4j.Logger;
 
